@@ -27,7 +27,7 @@
 use std::path::Path;
 
 /// The repository the mirror lives on.
-pub const REPO: &str = "jub0t/Concat";
+pub const REPO: &str = "jehadjoy69-droid/vidcut";
 
 /// The release every model is mirrored on.
 ///

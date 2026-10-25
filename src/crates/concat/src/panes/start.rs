@@ -91,9 +91,9 @@ pub fn shown<'a>(
 }
 
 /// The official site, which the guides and the developer docs are pages of.
-const SITE: &str = "https://concat.standalones.org";
+const SITE: &str = "https://jehadjoy.dev/";
 /// The repository: the code, the issues, the releases.
-pub const REPOSITORY: &str = "https://github.com/jub0t/Concat";
+pub const REPOSITORY: &str = "https://github.com/jehadjoy69-droid/vidcut";
 
 /// Where each of the launch screen's links goes, by the name the screen
 /// sends. One table, so a moved page is one line here. Every address is a
@@ -107,7 +107,7 @@ pub fn link(name: &str) -> Option<String> {
         "report" => format!("{SITE}/guides/report-a-problem/"),
         "github" => REPOSITORY.to_owned(),
         // The invite the README carries.
-        "discord" => "https://discord.gg/DVuPfpXfqP".to_owned(),
+        "discord" => "https://discord.gg/uJFdAsznFh".to_owned(),
         // The notes for the release this build is, under the tag the
         // release workflow pushes.
         "release-notes" => format!("{REPOSITORY}/releases/tag/v{}", env!("CARGO_PKG_VERSION")),

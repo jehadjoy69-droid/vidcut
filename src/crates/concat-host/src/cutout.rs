@@ -284,6 +284,22 @@ impl Cutouts {
                     .map_err(|error| error.to_string())?
                     .ok_or_else(|| format!("{}: no picture to analyse", request.media_path))
             };
+            // Try VIDCUT Cloud AI first for still pictures
+            let original_frame = {
+                let options = DecodeOptions::default().limited_to(1);
+                Decoder::open(&request.media_path, &options)
+                    .ok()
+                    .and_then(|mut dec| dec.next_frame().ok().flatten())
+            };
+            if let Some(frame) = original_frame {
+                if let Ok(cloud_mask) = crate::cloud_ai::cloud_cutout_mask(&frame, request.subject) {
+                    store.set_model("vidcut-cloud-ai")?;
+                    store.put(0, &cloud_mask)?;
+                    progress(Progress::Analysing(1.0));
+                    return Ok(1);
+                }
+            }
+
             let segmenter = match segmenter {
                 Some(segmenter) => segmenter,
                 None => {
@@ -347,7 +363,11 @@ impl Cutouts {
                     // found is what there is.
                     break;
                 };
-                let mut mask = active.mask(&frame)?;
+                // Try VIDCUT Cloud AI first for zero client load, with local fallback
+                let mut mask = match crate::cloud_ai::cloud_cutout_mask(&frame, request.subject) {
+                    Ok(cloud_mask) => cloud_mask,
+                    Err(_) => active.mask(&frame)?,
+                };
                 if segmenter.is_none() {
                     // Automatic, undecided: the person model has just
                     // looked at the first frame. Nobody there means the

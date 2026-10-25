@@ -33,15 +33,15 @@
 ; One id for the life of the product, so an install over an older one is
 ; an upgrade and not a second copy.
 AppId={{7B1E5C3A-3B9E-4F0B-9C6D-2F1D0C0A0C47}
-AppName=Concat
+AppName=VIDCUT
 AppVersion={#Version}
-AppVerName=Concat {#Version}
-AppPublisher=Concat contributors
-AppPublisherURL=https://github.com/jub0t/Concat
-AppSupportURL=https://github.com/jub0t/Concat/issues
-AppUpdatesURL=https://github.com/jub0t/Concat/releases
-DefaultDirName={autopf}\Concat
-DefaultGroupName=Concat
+AppVerName=VIDCUT {#Version}
+AppPublisher=Jehad Ur Rahman Joy
+AppPublisherURL=https://jehadjoy.dev/
+AppSupportURL=https://github.com/jehadjoy69-droid/vidcut/issues
+AppUpdatesURL=https://github.com/jehadjoy69-droid/vidcut/releases
+DefaultDirName={autopf}\VIDCUT
+DefaultGroupName=VIDCUT
 DisableProgramGroupPage=yes
 LicenseFile=..\..\LICENSE
 OutputDir={#Out}
